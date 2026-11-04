@@ -1,0 +1,25 @@
+/* services.css - Styles for Services Page */
+.service-card-img {
+  height: 220px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.service-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background-color: var(--dark-green);
+  color: #FFFFFF;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.service-highlight-box {
+  background: linear-gradient(135deg, var(--dark-green) 0%, var(--btn-green) 100%);
+  color: #FFFFFF;
+  border-radius: var(--radius-lg);
+  padding: 40px;
+}

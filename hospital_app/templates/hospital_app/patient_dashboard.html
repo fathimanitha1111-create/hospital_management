@@ -1,0 +1,208 @@
+{% extends 'hospital_app/base.html' %}
+{% load static %}
+
+{% block title %}Patient Portal - CarePulse Hospital{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'hospital_app/css/patient_dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="py-4 bg-white border-bottom">
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+            <div class="d-flex align-items-center gap-3">
+                <div class="rounded-circle text-white fw-bold fs-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 58px; height: 58px; background: linear-gradient(135deg, var(--dark-green) 0%, var(--btn-green) 100%);">
+                    {{ user.first_name|default:user.username|slice:":1"|upper }}
+                </div>
+                <div>
+                    <h3 class="fw-bold mb-0">Welcome, {{ user.get_full_name|default:user.username }}</h3>
+                    <div class="d-flex flex-wrap gap-2 text-muted small mt-1">
+                        <span><i class="bi bi-envelope me-1 text-success"></i> {{ user.email }}</span>
+                        <span>•</span>
+                        <span><i class="bi bi-telephone me-1 text-success"></i> {{ profile.phone|default:"Phone not provided" }}</span>
+                        <span>•</span>
+                        <span><i class="bi bi-geo-alt me-1 text-success"></i> {{ profile.address|default:"Address not set"|truncatechars:25 }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex gap-2">
+                <a href="{% url 'patient_profile' %}" class="btn btn-outline-green btn-sm px-3 py-2">
+                    <i class="bi bi-person-gear me-1"></i> Edit Profile
+                </a>
+                <a href="{% url 'appointment' %}" class="btn btn-primary-green btn-sm px-4 py-2">
+                    <i class="bi bi-calendar2-plus-fill me-1"></i> Book Appointment
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <!-- KPI Counters -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="patient-kpi-card">
+                <div>
+                    <span class="text-muted small text-uppercase fw-bold">Upcoming Appointments</span>
+                    <h2 class="fw-bold mb-0 mt-1" style="color: var(--dark-green);">{{ upcoming_appointments.count }}</h2>
+                </div>
+                <div class="kpi-icon-circle">
+                    <i class="bi bi-calendar2-check-fill"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="patient-kpi-card">
+                <div>
+                    <span class="text-muted small text-uppercase fw-bold">Previous / History</span>
+                    <h2 class="fw-bold mb-0 mt-1 text-secondary">{{ previous_appointments.count }}</h2>
+                </div>
+                <div class="kpi-icon-circle">
+                    <i class="bi bi-clock-history"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="patient-kpi-card">
+                <div>
+                    <span class="text-muted small text-uppercase fw-bold">Total Consultations</span>
+                    <h2 class="fw-bold mb-0 mt-1" style="color: var(--btn-green);">{{ total_count }}</h2>
+                </div>
+                <div class="kpi-icon-circle">
+                    <i class="bi bi-clipboard2-check-fill"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section: Upcoming Appointments -->
+    <div class="mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="fw-bold mb-0" style="color: var(--dark-green);">
+                <i class="bi bi-calendar-event text-success me-2"></i> Upcoming Scheduled Appointments
+            </h4>
+            <span class="badge bg-light text-dark border">{{ upcoming_appointments.count }} Scheduled</span>
+        </div>
+
+        <div class="dashboard-table-card">
+            <div class="table-responsive">
+                <table class="table table-custom table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Doctor & Specialty</th>
+                            <th>Department</th>
+                            <th>Date & Time</th>
+                            <th>Reason</th>
+                            <th>Status</th>
+                            <th class="text-end">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for appt in upcoming_appointments %}
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <img src="{% static appt.doctor.image %}" alt="{{ appt.doctor.name }}" class="rounded-circle object-fit-cover" width="40" height="40">
+                                        <div>
+                                            <strong class="text-dark d-block">{{ appt.doctor.name }}</strong>
+                                            <span class="small text-muted">{{ appt.doctor.specialization }}</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-light text-success border border-success-subtle">{{ appt.department.name }}</span>
+                                </td>
+                                <td>
+                                    <span class="d-block fw-semibold text-dark">{{ appt.appointment_date|date:"l, M d, Y" }}</span>
+                                    <span class="small text-muted">{{ appt.appointment_time }}</span>
+                                </td>
+                                <td>
+                                    <span class="small text-muted text-truncate d-inline-block" style="max-width: 180px;">{{ appt.reason }}</span>
+                                </td>
+                                <td>
+                                    <span class="badge {{ appt.badge_class }} rounded-pill px-3 py-1">
+                                        {{ appt.status }}
+                                    </span>
+                                </td>
+                                <td class="text-end">
+                                    <a href="{% url 'cancel_appointment' appt.pk %}" class="btn btn-sm btn-outline-danger rounded-pill px-3 btn-confirm-cancel">
+                                        <i class="bi bi-x-circle me-1"></i> Cancel
+                                    </a>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-center py-5 text-muted">
+                                    <i class="bi bi-calendar-x fs-1 d-block mb-2 text-secondary"></i>
+                                    <h6>No upcoming appointments scheduled</h6>
+                                    <p class="small mb-3">Need to see a doctor? Schedule your visit in seconds.</p>
+                                    <a href="{% url 'appointment' %}" class="btn btn-primary-green btn-sm">Book New Appointment</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section: Previous Appointments -->
+    <div>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="fw-bold mb-0" style="color: var(--dark-green);">
+                <i class="bi bi-clock-history text-secondary me-2"></i> Past Appointments & History
+            </h4>
+            <span class="badge bg-light text-dark border">{{ previous_appointments.count }} Records</span>
+        </div>
+
+        <div class="dashboard-table-card">
+            <div class="table-responsive">
+                <table class="table table-custom table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Doctor & Specialty</th>
+                            <th>Department</th>
+                            <th>Date & Time</th>
+                            <th>Reason</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for appt in previous_appointments %}
+                            <tr>
+                                <td>
+                                    <strong class="text-dark d-block">{{ appt.doctor.name }}</strong>
+                                    <span class="small text-muted">{{ appt.doctor.specialization }}</span>
+                                </td>
+                                <td>{{ appt.department.name }}</td>
+                                <td>
+                                    <span class="d-block">{{ appt.appointment_date|date:"M d, Y" }}</span>
+                                    <span class="small text-muted">{{ appt.appointment_time }}</span>
+                                </td>
+                                <td>
+                                    <span class="small text-muted">{{ appt.reason|truncatechars:40 }}</span>
+                                </td>
+                                <td>
+                                    <span class="badge {{ appt.badge_class }} rounded-pill px-3 py-1">
+                                        {{ appt.status }}
+                                    </span>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center py-4 text-muted small">
+                                    No previous appointment records on file.
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

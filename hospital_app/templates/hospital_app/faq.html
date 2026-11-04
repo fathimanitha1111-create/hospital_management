@@ -1,0 +1,139 @@
+{% extends 'hospital_app/base.html' %}
+{% load static %}
+
+{% block title %}Frequently Asked Questions - CarePulse Hospital{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'hospital_app/css/faq.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="py-5 bg-white border-bottom">
+    <div class="container text-center">
+        <span class="badge-green-pill">Help & Knowledge Base</span>
+        <h1 class="fw-bold mb-2">Frequently Asked Questions (FAQ)</h1>
+        <p class="text-muted mx-auto" style="max-width: 620px;">
+            Find quick answers to common questions about doctor scheduling, patient registration, insurance coverage, and hospital policies.
+        </p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <div class="accordion" id="hospitalFaqAccordion">
+                
+                <!-- Category 1: Appointment Questions -->
+                <h5 class="fw-bold mb-3 text-success"><i class="bi bi-calendar2-check-fill me-2"></i> 1. Appointment Scheduling & Visits</h5>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            How do I schedule an appointment with a specialist?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#hospitalFaqAccordion">
+                        <div class="accordion-body">
+                            You can easily book online by signing into your account, navigating to our <strong>Book Appointment</strong> page, selecting your desired clinical department and doctor, choosing your preferred date and time slot, and submitting your symptoms. You will immediately receive confirmation on your dashboard.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Can I cancel or reschedule my scheduled appointment?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#hospitalFaqAccordion">
+                        <div class="accordion-body">
+                            Yes! Simply go to your <strong>Patient Dashboard</strong>, locate the scheduled appointment under "Upcoming Scheduled Appointments", and click the <strong>Cancel</strong> button. You can also re-book for a different date or specialist anytime.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            What documents should I bring to my first appointment?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#hospitalFaqAccordion">
+                        <div class="accordion-body">
+                            Please bring a valid photo identification card (such as a Driver's License or Passport), your health insurance card, a list of current medications with dosages, and any prior diagnostic imaging films, CDs, or laboratory blood test reports.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: Doctor Availability Questions -->
+                <h5 class="fw-bold mt-5 mb-3 text-success"><i class="bi bi-person-badge-fill me-2"></i> 2. Doctor Availability & Specialties</h5>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            How do I check when a doctor is available for consultation?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#hospitalFaqAccordion">
+                        <div class="accordion-body">
+                            Each doctor's consultation days and clinical hours are listed on the <strong>Doctors Directory</strong> and individual <strong>Doctor Detail</strong> profiles. You can also filter doctors by department to compare schedules.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Can I walk in without an appointment for non-emergency conditions?
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#hospitalFaqAccordion">
+                        <div class="accordion-body">
+                            Yes, our General Medicine outpatient OPD accepts walk-in consultations during working hours (8:00 AM – 7:00 PM). However, booking an appointment in advance guarantees zero queue waiting time with senior specialists. Emergency and trauma cases are seen immediately 24/7 without appointment.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3: Patient Registration & Portal -->
+                <h5 class="fw-bold mt-5 mb-3 text-success"><i class="bi bi-shield-lock-fill me-2"></i> 3. Patient Registration & Portal Security</h5>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingSix">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            Why should I create a patient portal account?
+                        </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#hospitalFaqAccordion">
+                        <div class="accordion-body">
+                            A patient portal account allows you to securely manage all past and upcoming doctor consultations, view appointment approval statuses, update your phone and residential contact details, and quickly book consultations with your preferred specialists.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingSeven">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                            Is my personal and medical data secure?
+                        </button>
+                    </h2>
+                    <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#hospitalFaqAccordion">
+                        <div class="accordion-body">
+                            Absolutely. CarePulse Hospital enforces strict HIPAA data security protocols. All accounts are protected by Django cryptographic password hashing, session tokens, and strict access control ensuring only you can access your private consultation records.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="p-4 rounded-4 text-center mt-5" style="background-color: #FFFFFF; border: 1.5px solid var(--primary-color);">
+                <h5 class="fw-bold mb-2">Have a Question Not Listed Here?</h5>
+                <p class="text-muted small mb-3">Our patient coordinator desk is on call 24 hours a day to answer any clinical inquiry.</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="{% url 'contact' %}" class="btn btn-outline-green btn-sm px-4">Contact Admissions</a>
+                    <a href="tel:+18002273785" class="btn btn-primary-green btn-sm px-4">Call Helpline</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'hospital_app/base.html' %}
+{% load static %}
+
+{% block title %}{{ doctor.name }} - Doctor Profile - CarePulse Hospital{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'hospital_app/css/doctor_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="py-5 bg-white border-bottom">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb small">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'doctors' %}">Doctors</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ doctor.name }}</li>
+            </ol>
+        </nav>
+
+        <div class="row align-items-center g-4">
+            <div class="col-md-4 col-lg-3 text-center">
+                <img src="{% static doctor.image %}" alt="{{ doctor.name }}" class="doc-detail-avatar">
+            </div>
+
+            <div class="col-md-8 col-lg-6">
+                <span class="badge bg-light text-success border border-success-subtle mb-2 px-3 py-1 rounded-pill fw-bold">
+                    Department of {{ doctor.department.name }}
+                </span>
+                <h1 class="fw-bold mb-1">{{ doctor.name }}</h1>
+                <h5 class="text-muted fw-semibold mb-2">{{ doctor.qualification }}</h5>
+                <p class="text-success fw-bold fs-6 mb-3">{{ doctor.specialization }}</p>
+
+                <div class="row g-2 doc-info-badge small">
+                    <div class="col-sm-6">
+                        <i class="bi bi-award-fill text-success me-1"></i> <strong>Experience:</strong> {{ doctor.experience }}
+                    </div>
+                    <div class="col-sm-6">
+                        <i class="bi bi-clock-fill text-success me-1"></i> <strong>Hours:</strong> {{ doctor.availability }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 text-lg-end">
+                <div class="doc-schedule-card text-start">
+                    <h6 class="fw-bold mb-2">Book Consultation</h6>
+                    <p class="small text-muted mb-3">Schedule your in-person OPD appointment with {{ doctor.name }}.</p>
+                    <a href="{% url 'appointment' %}?doctor={{ doctor.pk }}" class="btn btn-primary-green w-100 justify-content-center py-2">
+                        <i class="bi bi-calendar2-check-fill me-1"></i> Book Appointment
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-5">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                <h4 class="fw-bold mb-3"><i class="bi bi-person-lines-fill text-success me-2"></i> Biography & Clinical Expertise</h4>
+                <p class="text-secondary leading-relaxed">
+                    {{ doctor.description|linebreaks }}
+                </p>
+
+                <h5 class="fw-bold mt-4 mb-3">Key Focus Areas</h5>
+                <ul class="list-unstyled d-flex flex-column gap-2 text-secondary small">
+                    <li class="d-flex align-items-center gap-2">
+                        <i class="bi bi-check-circle-fill text-success"></i> Comprehensive Clinical Diagnostics and Second Opinions
+                    </li>
+                    <li class="d-flex align-items-center gap-2">
+                        <i class="bi bi-check-circle-fill text-success"></i> Evidence-Based Medical Treatment Plans
+                    </li>
+                    <li class="d-flex align-items-center gap-2">
+                        <i class="bi bi-check-circle-fill text-success"></i> Patient-Centric Preventative Health Guidance
+                    </li>
+                    <li class="d-flex align-items-center gap-2">
+                        <i class="bi bi-check-circle-fill text-success"></i> Post-Treatment Rehabilitation Follow-up
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                <h5 class="fw-bold mb-3">Other Specialists in {{ doctor.department.name }}</h5>
+                <div class="d-flex flex-column gap-3">
+                    {% for rel in related_doctors %}
+                        <div class="d-flex align-items-center gap-3 p-2 rounded-3 border">
+                            <img src="{% static rel.image %}" alt="{{ rel.name }}" class="rounded-circle object-fit-cover" width="46" height="46">
+                            <div class="flex-grow-1">
+                                <a href="{% url 'doctor_detail' rel.pk %}" class="fw-bold text-dark d-block small">{{ rel.name }}</a>
+                                <span class="text-muted small" style="font-size: 0.75rem;">{{ rel.specialization|truncatewords:4 }}</span>
+                            </div>
+                            <a href="{% url 'appointment' %}?doctor={{ rel.pk }}" class="btn btn-sm btn-outline-green rounded-pill px-2 py-1" style="font-size: 0.75rem;">
+                                Book
+                            </a>
+                        </div>
+                    {% empty %}
+                        <p class="text-muted small mb-0">No other doctors listed in this department.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'hospital_app/base.html' %}
+{% load static %}
+
+{% block title %}Patient Registration - CarePulse Hospital{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'hospital_app/css/patient_register.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="auth-form-card p-0 overflow-hidden">
+                <div class="auth-header-strip">
+                    <img src="{% static 'hospital_app/images/hospital-logo.png' %}" alt="CarePulse Logo" height="52" class="mb-2">
+                    <h3 class="fw-bold mb-1 text-white">Create Patient Account</h3>
+                    <p class="small mb-0" style="color: #E8F5E9;">Register to book consultations, track records, and manage appointments</p>
+                </div>
+
+                <div class="p-4 p-md-5">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <strong class="d-block mb-1"><i class="bi bi-exclamation-triangle-fill me-1"></i> Please fix the errors below:</strong>
+                                <ul class="mb-0 small ps-3">
+                                    {% for field in form %}
+                                        {% for error in field.errors %}
+                                            <li>{{ field.label }}: {{ error }}</li>
+                                        {% endfor %}
+                                    {% endfor %}
+                                    {% for error in form.non_field_errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">First Name <span class="text-danger">*</span></label>
+                                {{ form.first_name }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Last Name <span class="text-danger">*</span></label>
+                                {{ form.last_name }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Email Address <span class="text-danger">*</span></label>
+                                {{ form.email }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Phone Number <span class="text-danger">*</span></label>
+                                {{ form.phone }}
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold">Choose a Username <span class="text-danger">*</span></label>
+                                {{ form.username }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Password <span class="text-danger">*</span></label>
+                                {{ form.password }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Confirm Password <span class="text-danger">*</span></label>
+                                {{ form.confirm_password }}
+                            </div>
+                            <div class="col-12 pt-3">
+                                <button type="submit" class="btn btn-primary-green w-100 justify-content-center py-3 fs-6">
+                                    <i class="bi bi-person-check-fill me-1"></i> Register Account
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-4 text-muted small">
+                        Already have an account? <a href="{% url 'patient_login' %}" class="fw-bold text-success">Sign In Here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

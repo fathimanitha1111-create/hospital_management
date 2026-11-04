@@ -1,0 +1,30 @@
+/* contact.css - Styles for Contact Page */
+.contact-info-card {
+  background-color: #FFFFFF;
+  border-radius: var(--radius-md);
+  padding: 30px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+  height: 100%;
+}
+
+.contact-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background-color: #E8F5E9;
+  color: var(--dark-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.map-placeholder-box {
+  background-color: #E8F5E9;
+  border-radius: var(--radius-md);
+  padding: 40px;
+  text-align: center;
+  border: 2px dashed var(--primary-color);
+}

@@ -1,0 +1,356 @@
+{% extends 'hospital_app/base.html' %}
+{% load static %}
+
+{% block title %}CarePulse Hospital - Advanced Healthcare & Compassionate Healing{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'hospital_app/css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- ==========================================
+     HERO BANNER SECTION
+     ========================================== -->
+<section class="hero-banner-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <span class="intro-badge mb-3 d-inline-block">
+                    <i class="bi bi-patch-check-fill text-success me-1"></i> JCI Certified Multi-Specialty Hospital
+                </span>
+                <h1 class="display-4 fw-bold mb-3" style="color: var(--dark-green); line-height: 1.15;">
+                    Advanced Healthcare, <br>
+                    <span style="color: var(--btn-green);">Compassionate Healing.</span>
+                </h1>
+                <p class="fs-6 text-muted mb-4">
+                    Welcome to CarePulse Hospital. We provide round-the-clock emergency assistance, distinguished specialist consultations, and cutting-edge medical technologies designed to restore your vitality.
+                </p>
+
+                <div class="d-flex flex-wrap gap-3 mb-4">
+                    <a href="{% url 'appointment' %}" class="btn btn-primary-green px-4 py-3 fs-6">
+                        <i class="bi bi-calendar2-check-fill"></i> Book Appointment
+                    </a>
+                    <a href="{% url 'doctors' %}" class="btn btn-outline-green px-4 py-3 fs-6">
+                        <i class="bi bi-search"></i> Find a Specialist
+                    </a>
+                    <a href="tel:+1800911785" class="btn btn-danger px-3 py-3 fs-6 rounded-pill fw-bold">
+                        <i class="bi bi-telephone-plus-fill me-1"></i> Emergency ER
+                    </a>
+                </div>
+
+                <div class="d-flex align-items-center gap-3 pt-2">
+                    <span class="badge bg-white text-dark border px-3 py-2 rounded-pill shadow-sm">
+                        <i class="bi bi-shield-fill-check text-success me-1"></i> 100% HIPAA Compliant
+                    </span>
+                    <span class="badge bg-white text-dark border px-3 py-2 rounded-pill shadow-sm">
+                        <i class="bi bi-star-fill text-warning me-1"></i> 5.0 Patient Rating
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <img src="{% static 'hospital_app/images/hospital-banner.jpg' %}" alt="CarePulse Banner" class="hero-banner-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================
+     HOSPITAL STATISTICS
+     ========================================== -->
+<div class="container">
+    <div class="stats-card-strip">
+        <div class="row g-3">
+            <div class="col-6 col-md-3">
+                <div class="stat-box">
+                    <div class="stat-number">{{ stats.doctors }}+</div>
+                    <div class="stat-label">Senior Specialists</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-box">
+                    <div class="stat-number">{{ stats.departments }}</div>
+                    <div class="stat-label">Clinical Departments</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-box">
+                    <div class="stat-number">{{ stats.patients_healed }}+</div>
+                    <div class="stat-label">Patients Recovered</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-box">
+                    <div class="stat-number">{{ stats.satisfaction_rate }}</div>
+                    <div class="stat-label">Satisfaction Score</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==========================================
+     ABOUT HOSPITAL INTRODUCTION
+     ========================================== -->
+<section class="py-5 mt-4">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <img src="{% static 'hospital_app/images/hospital-building.jpg' %}" alt="Hospital Building" class="img-fluid rounded-4 shadow-sm border border-2 w-100">
+            </div>
+            <div class="col-lg-6">
+                <span class="badge-green-pill">About Our Center</span>
+                <h2 class="fw-bold mb-3">Compassionate Care with World-Class Standards</h2>
+                <p class="text-muted mb-3">
+                    CarePulse Hospital has served our community for over 25 years with unwavering dedication to clinical innovation and patient comfort. Our 450-bed tertiary care facility features robotic operating theaters, dedicated cardiac suites, and 24/7 critical care units.
+                </p>
+                <div class="row g-3 mb-4">
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                            <span class="fw-semibold">24/7 Trauma Emergency</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                            <span class="fw-semibold">Digital Pathology Lab</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                            <span class="fw-semibold">Modern Inpatient Suites</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                            <span class="fw-semibold">Certified Pharmacy</span>
+                        </div>
+                    </div>
+                </div>
+                <a href="{% url 'about' %}" class="btn btn-outline-green">
+                    Learn More About Us <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================
+     MEDICAL SERVICES SECTION
+     ========================================== -->
+<section class="py-5" style="background-color: #FFFFFF;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge-green-pill">Comprehensive Capabilities</span>
+            <h2 class="fw-bold mb-2">Our Key Medical Services</h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">
+                Equipped with modern infrastructure to meet every healthcare need under one roof.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="hospital-card">
+                    <img src="{% static 'hospital_app/images/emergency-care.jpg' %}" alt="Emergency Care" class="dept-preview-img">
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <h5 class="fw-bold mb-2">24/7 Emergency Care</h5>
+                        <p class="small text-muted flex-grow-1">Rapid response trauma resuscitation and acute life support active day and night.</p>
+                        <a href="{% url 'services' %}" class="fw-bold text-success small mt-2">Explore Service <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="hospital-card">
+                    <img src="{% static 'hospital_app/images/laboratory.jpg' %}" alt="Laboratory" class="dept-preview-img">
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <h5 class="fw-bold mb-2">Diagnostic Laboratory</h5>
+                        <p class="small text-muted flex-grow-1">Fully automated clinical biochemistry, microbiology, and molecular pathology screening.</p>
+                        <a href="{% url 'services' %}" class="fw-bold text-success small mt-2">Explore Service <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="hospital-card">
+                    <img src="{% static 'hospital_app/images/pharmacy.jpg' %}" alt="Pharmacy" class="dept-preview-img">
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <h5 class="fw-bold mb-2">In-Hospital Pharmacy</h5>
+                        <p class="small text-muted flex-grow-1">Licensed pharmaceutical inventory stocked with genuine prescription medicines 24/7.</p>
+                        <a href="{% url 'services' %}" class="fw-bold text-success small mt-2">Explore Service <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="hospital-card">
+                    <img src="{% static 'hospital_app/images/ambulance.jpg' %}" alt="Ambulance" class="dept-preview-img">
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <h5 class="fw-bold mb-2">ICU Ambulance Fleet</h5>
+                        <p class="small text-muted flex-grow-1">Mobile intensive care units equipped with ventilators and cardiac defibrillators.</p>
+                        <a href="{% url 'services' %}" class="fw-bold text-success small mt-2">Explore Service <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="{% url 'services' %}" class="btn btn-primary-green">
+                View All Medical Services <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================
+     FEATURED DOCTORS
+     ========================================== -->
+<section class="py-5" style="background-color: var(--bg-light);">
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-5">
+            <div>
+                <span class="badge-green-pill">Medical Specialists</span>
+                <h2 class="fw-bold mb-1">Meet Our Leading Doctors</h2>
+                <p class="text-muted mb-0">Board-certified specialists dedicated to personalized patient treatment.</p>
+            </div>
+            <div class="mt-3 mt-md-0">
+                <a href="{% url 'doctors' %}" class="btn btn-outline-green">
+                    Browse All Doctors <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            {% for doc in featured_doctors %}
+                <div class="col-lg-3 col-md-6">
+                    <div class="hospital-card">
+                        <img src="{% static doc.image %}" alt="{{ doc.name }}" class="doctor-preview-img">
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-light text-success border border-success-subtle mb-2 align-self-start small">{{ doc.department.name }}</span>
+                            <h5 class="fw-bold mb-1">{{ doc.name }}</h5>
+                            <p class="small text-muted mb-2">{{ doc.qualification }}</p>
+                            <p class="small text-secondary mb-3 flex-grow-1">{{ doc.specialization }}</p>
+                            <div class="d-flex gap-2 mt-auto">
+                                <a href="{% url 'doctor_detail' doc.pk %}" class="btn btn-sm btn-outline-green flex-fill rounded-pill">Details</a>
+                                <a href="{% url 'appointment' %}?doctor={{ doc.pk }}" class="btn btn-sm btn-primary-green flex-fill rounded-pill justify-content-center">Book</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================
+     MEDICAL DEPARTMENTS
+     ========================================== -->
+<section class="py-5" style="background-color: #FFFFFF;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge-green-pill">Centers of Excellence</span>
+            <h2 class="fw-bold mb-2">Our Clinical Departments</h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">
+                Multi-disciplinary divisions offering focused diagnostics, surgical innovations, and holistic recovery plans.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            {% for dept in featured_departments %}
+                <div class="col-lg-3 col-md-6">
+                    <div class="hospital-card">
+                        <img src="{% static dept.image %}" alt="{{ dept.name }}" class="dept-preview-img">
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h5 class="fw-bold mb-2">{{ dept.name }}</h5>
+                            <p class="small text-muted flex-grow-1">{{ dept.description|truncatewords:16 }}</p>
+                            <a href="{% url 'appointment' %}?department={{ dept.id }}" class="btn btn-sm btn-primary-green mt-3 justify-content-center">
+                                Book in {{ dept.name }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="{% url 'departments' %}" class="btn btn-outline-green">
+                Explore All 8 Departments <i class="bi bi-grid-fill ms-1"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================
+     PATIENT TESTIMONIALS
+     ========================================== -->
+<section class="py-5" style="background-color: var(--bg-light);">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge-green-pill">Patient Stories</span>
+            <h2 class="fw-bold mb-2">Stories of Healing & Hope</h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">
+                Hear directly from individuals and families who placed their trust in CarePulse Hospital.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="hospital-card p-4">
+                    <div class="text-warning mb-3">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                    </div>
+                    <p class="small text-muted mb-4 flex-grow-1">
+                        "The cardiology department and Dr. Alexander Wright gave me a second chance at life. The surgical theater was spotless and nursing care was extraordinary."
+                    </p>
+                    <div class="d-flex align-items-center gap-3 pt-3 border-top mt-auto">
+                        <div class="rounded-circle bg-success text-white fw-bold d-flex align-items-center justify-content-center" style="width: 42px; height: 42px;">E</div>
+                        <div>
+                            <h6 class="fw-bold mb-0">Edward Harrison</h6>
+                            <span class="small text-muted">Angioplasty Patient</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="hospital-card p-4">
+                    <div class="text-warning mb-3">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                    </div>
+                    <p class="small text-muted mb-4 flex-grow-1">
+                        "Dr. Sarah Jenkins made our four-year-old feel completely safe and relaxed. The pediatric ward is colorful, comforting, and thoroughly professional."
+                    </p>
+                    <div class="d-flex align-items-center gap-3 pt-3 border-top mt-auto">
+                        <div class="rounded-circle bg-success text-white fw-bold d-flex align-items-center justify-content-center" style="width: 42px; height: 42px;">M</div>
+                        <div>
+                            <h6 class="fw-bold mb-0">Maria Gonzalez</h6>
+                            <span class="small text-muted">Pediatric Parent</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="hospital-card p-4">
+                    <div class="text-warning mb-3">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                    </div>
+                    <p class="small text-muted mb-4 flex-grow-1">
+                        "Booking through the patient portal was smooth and fast. My knee replacement with Dr. Marcus Sterling was an absolute success. Highly recommended."
+                    </p>
+                    <div class="d-flex align-items-center gap-3 pt-3 border-top mt-auto">
+                        <div class="rounded-circle bg-success text-white fw-bold d-flex align-items-center justify-content-center" style="width: 42px; height: 42px;">R</div>
+                        <div>
+                            <h6 class="fw-bold mb-0">Robert Kelly</h6>
+                            <span class="small text-muted">Orthopedic Patient</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'hospital_app/base.html' %}
+{% load static %}
+
+{% block title %}Clinical Departments - CarePulse Hospital{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'hospital_app/css/departments.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="dept-header-strip text-center">
+    <div class="container">
+        <span class="badge-green-pill">Specialized Centers</span>
+        <h1 class="fw-bold mb-2">Our Clinical Departments</h1>
+        <p class="text-muted mx-auto" style="max-width: 620px;">
+            CarePulse houses 8 dedicated clinical departments led by world-class specialists and equipped with advanced diagnostic and therapeutic infrastructure.
+        </p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-4">
+        {% for dept in departments %}
+            <div class="col-lg-4 col-md-6">
+                <div class="hospital-card">
+                    <img src="{% static dept.image %}" alt="{{ dept.name }}" class="dept-card-img">
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <h4 class="fw-bold mb-2">{{ dept.name }}</h4>
+                        <p class="small text-muted flex-grow-1">{{ dept.description }}</p>
+
+                        <div class="d-flex align-items-center justify-content-between pt-3 border-top mt-auto">
+                            <span class="badge bg-light text-success border border-success-subtle px-2 py-1 small">
+                                {{ dept.doctor_count }} Active Specialists
+                            </span>
+                            <div class="d-flex gap-2">
+                                <a href="{% url 'doctors' %}?department={{ dept.id }}" class="btn btn-sm btn-outline-green rounded-pill">
+                                    Doctors
+                                </a>
+                                <a href="{% url 'appointment' %}?department={{ dept.id }}" class="btn btn-sm btn-primary-green rounded-pill">
+                                    Book
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

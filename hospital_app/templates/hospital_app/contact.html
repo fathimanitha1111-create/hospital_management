@@ -1,0 +1,125 @@
+{% extends 'hospital_app/base.html' %}
+{% load static %}
+
+{% block title %}Contact Us - CarePulse Hospital{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'hospital_app/css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="py-5 bg-white border-bottom">
+    <div class="container text-center">
+        <span class="badge-green-pill">24/7 Patient Coordination</span>
+        <h1 class="fw-bold mb-2">Contact CarePulse Hospital</h1>
+        <p class="text-muted mx-auto" style="max-width: 620px;">
+            Have questions about specialized consultations, patient admissions, or health insurance coverage? Our hospital care team is ready to assist you.
+        </p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-5">
+        <!-- Contact Form -->
+        <div class="col-lg-7">
+            <div class="hospital-card p-4 p-md-5">
+                <h4 class="fw-bold mb-2">Send an Inquiry</h4>
+                <p class="text-muted small mb-4">Submit your question below. A patient coordinator will respond within 2-4 business hours.</p>
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">Your Name <span class="text-danger">*</span></label>
+                            {{ form.name }}
+                            {% if form.name.errors %}<div class="text-danger small mt-1">{{ form.name.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">Email Address <span class="text-danger">*</span></label>
+                            {{ form.email }}
+                            {% if form.email.errors %}<div class="text-danger small mt-1">{{ form.email.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label small fw-bold">Subject / Purpose <span class="text-danger">*</span></label>
+                            {{ form.subject }}
+                            {% if form.subject.errors %}<div class="text-danger small mt-1">{{ form.subject.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label small fw-bold">Your Message <span class="text-danger">*</span></label>
+                            {{ form.message }}
+                            {% if form.message.errors %}<div class="text-danger small mt-1">{{ form.message.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-12 pt-2">
+                            <button type="submit" class="btn btn-primary-green px-4 py-2">
+                                <i class="bi bi-send-fill me-1"></i> Send Message
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Information Column -->
+        <div class="col-lg-5">
+            <div class="contact-info-card mb-4">
+                <h5 class="fw-bold mb-3 border-bottom pb-2">Hospital Information</h5>
+
+                <div class="d-flex flex-column gap-4">
+                    <div class="d-flex gap-3">
+                        <div class="contact-icon-box">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </div>
+                        <div>
+                            <strong class="d-block text-dark">Main Hospital Campus</strong>
+                            <span class="small text-muted">742 Evergreen Healthcare Ave, Medical City, NY 10001</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-3">
+                        <div class="contact-icon-box">
+                            <i class="bi bi-telephone-fill"></i>
+                        </div>
+                        <div>
+                            <strong class="d-block text-dark">Helpline & Reception</strong>
+                            <span class="small text-muted">+1 (800) CARE-PULSE<br>Direct ER Desk: +1 (800) 911-PULSE</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-3">
+                        <div class="contact-icon-box">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+                        <div>
+                            <strong class="d-block text-dark">Email Inquiries</strong>
+                            <span class="small text-muted">appointments@carepulse.hospital<br>inquiries@carepulse.hospital</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-3">
+                        <div class="contact-icon-box">
+                            <i class="bi bi-clock-fill"></i>
+                        </div>
+                        <div>
+                            <strong class="d-block text-dark">Consultation & Visiting Hours</strong>
+                            <span class="small text-muted">OPD Clinic: Mon - Sat: 8:00 AM - 7:00 PM<br>Emergency & ICU: Open 24/7 Everyday</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Section -->
+            <div class="map-placeholder-box">
+                <i class="bi bi-map-fill text-success" style="font-size: 2.5rem;"></i>
+                <h6 class="fw-bold mt-2 mb-1" style="color: var(--dark-green);">Campus Location & Metro Transit</h6>
+                <p class="small text-muted mb-2">Located in Central Health City, 5 minutes from Metro Line 2 (Healthcare Plaza Exit).</p>
+                <span class="badge bg-white text-success border border-success-subtle px-3 py-1">Free Valet Patient Parking Available</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

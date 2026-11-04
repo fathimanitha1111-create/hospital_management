@@ -1,0 +1,98 @@
+{% extends 'hospital_app/base.html' %}
+{% load static %}
+
+{% block title %}Doctors Directory - CarePulse Hospital{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'hospital_app/css/doctors.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="py-5 bg-white border-bottom">
+    <div class="container text-center">
+        <span class="badge-green-pill">Specialist Physicians</span>
+        <h1 class="fw-bold mb-2">Our Doctors & Medical Specialists</h1>
+        <p class="text-muted mx-auto" style="max-width: 620px;">
+            Find certified doctors across all departments. Search by doctor name or filter by department specialty to book your appointment.
+        </p>
+
+        <!-- Search Bar -->
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-7 col-lg-6">
+                <form method="GET" class="input-group shadow-sm rounded-pill overflow-hidden border">
+                    {% if selected_dept %}
+                        <input type="hidden" name="department" value="{{ selected_dept }}">
+                    {% endif %}
+                    <span class="input-group-text bg-white border-0 ps-3">
+                        <i class="bi bi-search text-muted"></i>
+                    </span>
+                    <input type="text" name="q" id="doctorLiveSearch" value="{{ search_q }}" class="form-control border-0 py-2" placeholder="Search doctor by name, qualification, specialty...">
+                    <button class="btn btn-primary-green px-4 fw-semibold" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Department Filter Pills -->
+        <div class="d-flex flex-wrap justify-content-center gap-2 mt-4">
+            <a href="{% url 'doctors' %}" class="dept-pill-btn {% if not selected_dept %}active{% endif %}">
+                All Departments
+            </a>
+            {% for dept in departments %}
+                <a href="{% url 'doctors' %}?department={{ dept.id }}" class="dept-pill-btn {% if selected_dept == dept.id %}active{% endif %}">
+                    {{ dept.name }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    {% if search_q or selected_dept %}
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <span class="text-muted small">
+                Showing results for 
+                {% if search_q %}"<strong>{{ search_q }}</strong>"{% endif %}
+                {% if selected_dept %} in selected department{% endif %}
+            </span>
+            <a href="{% url 'doctors' %}" class="btn btn-sm btn-outline-secondary rounded-pill">Reset Filter</a>
+        </div>
+    {% endif %}
+
+    <div class="row g-4" id="doctorsGridContainer">
+        {% for doc in doctors %}
+            <div class="col-lg-3 col-md-6 doctor-grid-col">
+                <div class="hospital-card doctor-card-item">
+                    <img src="{% static doc.image %}" alt="{{ doc.name }}" class="doctor-profile-img">
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <span class="badge bg-light text-success border border-success-subtle mb-2 align-self-start small">{{ doc.department.name }}</span>
+                        <h5 class="fw-bold mb-1">{{ doc.name }}</h5>
+                        <p class="small text-muted mb-1">{{ doc.qualification }}</p>
+                        <p class="small text-secondary fw-semibold mb-2">{{ doc.specialization }}</p>
+
+                        <div class="bg-light p-2 rounded-2 small text-muted mb-3">
+                            <div><i class="bi bi-briefcase-fill text-success me-1"></i> Experience: <strong>{{ doc.experience }}</strong></div>
+                            <div><i class="bi bi-clock-fill text-success me-1"></i> {{ doc.availability }}</div>
+                        </div>
+
+                        <div class="d-flex gap-2 mt-auto">
+                            <a href="{% url 'doctor_detail' doc.pk %}" class="btn btn-sm btn-outline-green flex-fill rounded-pill py-2">
+                                View Details
+                            </a>
+                            <a href="{% url 'appointment' %}?doctor={{ doc.pk }}" class="btn btn-sm btn-primary-green flex-fill rounded-pill py-2 justify-content-center">
+                                Book
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12 text-center py-5">
+                <i class="bi bi-person-x text-muted" style="font-size: 3.5rem;"></i>
+                <h4 class="fw-bold mt-3">No Doctors Found</h4>
+                <p class="text-muted">No specialists match your search criteria. Try selecting another department or clearing search filters.</p>
+                <a href="{% url 'doctors' %}" class="btn btn-primary-green mt-2">View All Doctors</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

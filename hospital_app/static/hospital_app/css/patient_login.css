@@ -1,0 +1,22 @@
+/* patient_login.css - Styles for Patient Sign In */
+.login-card {
+  background-color: #FFFFFF;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+}
+
+.login-header-banner {
+  background: linear-gradient(135deg, var(--dark-green) 0%, var(--btn-green) 100%);
+  color: #FFFFFF;
+  padding: 30px;
+  text-align: center;
+}
+
+.quick-demo-pill {
+  background-color: #E8F5E9;
+  border: 1px dashed var(--primary-color);
+  padding: 14px;
+  border-radius: var(--radius-sm);
+}

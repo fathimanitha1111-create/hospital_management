@@ -1,0 +1,123 @@
+{% extends 'hospital_app/base.html' %}
+{% load static %}
+
+{% block title %}About Us - CarePulse Hospital{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'hospital_app/css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="py-5 bg-white border-bottom">
+    <div class="container text-center">
+        <span class="badge-green-pill">About Our Institution</span>
+        <h1 class="fw-bold mb-2">Pioneering Clinical Excellence & Healing</h1>
+        <p class="text-muted mx-auto" style="max-width: 620px;">
+            For over two decades, CarePulse Hospital has united world-class medical specialists, groundbreaking surgical robotics, and dedicated patient care.
+        </p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <!-- Introduction & History -->
+    <div class="row align-items-center g-5 mb-5">
+        <div class="col-lg-6">
+            <span class="badge-green-pill">Our Heritage</span>
+            <h2 class="fw-bold mb-3">25+ Years of Dedicated Healthcare Service</h2>
+            <p class="text-muted mb-3">
+                CarePulse Hospital was established in 2001 with a visionary commitment: to create a healthcare sanctuary where every patient receives personalized, evidence-based treatment backed by state-of-the-art diagnostic instruments.
+            </p>
+            <p class="text-muted mb-4">
+                From our origins as a 50-bed community clinic, we have expanded into an internationally accredited 450-bed tertiary care hospital with 8 specialized centers of clinical excellence, serving more than 15,000 patients annually.
+            </p>
+            <div class="d-flex flex-wrap gap-4 text-muted small">
+                <div><i class="bi bi-award-fill text-success fs-5 me-1"></i> <strong>JCI Accredited</strong></div>
+                <div><i class="bi bi-shield-check text-success fs-5 me-1"></i> <strong>NABH Certified</strong></div>
+                <div><i class="bi bi-building-check text-success fs-5 me-1"></i> <strong>450 Beds & 18 OTs</strong></div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <img src="{% static 'hospital_app/images/hospital-building.jpg' %}" alt="Hospital Building" class="about-hero-img">
+        </div>
+    </div>
+
+    <!-- Mission & Vision -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6">
+            <div class="mission-vision-box">
+                <div class="feature-check-icon mb-3">
+                    <i class="bi bi-compass-fill"></i>
+                </div>
+                <h4 class="fw-bold mb-3">Our Mission</h4>
+                <p class="text-muted mb-0">
+                    To deliver compassionate, comprehensive, and technologically advanced healthcare that prioritizes clinical safety, improves patient outcomes, and fosters community wellness through continuous clinical innovation and education.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mission-vision-box">
+                <div class="feature-check-icon mb-3">
+                    <i class="bi bi-eye-fill"></i>
+                </div>
+                <h4 class="fw-bold mb-3">Our Vision</h4>
+                <p class="text-muted mb-0">
+                    To be the nation's premier tertiary healthcare destination, celebrated for medical breakthroughs, clinical empathy, rapid emergency triage, and transformative health outcomes for every generation.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hospital Facilities (with hospital-interior.jpg) -->
+    <div class="row align-items-center g-5 mb-5 py-4">
+        <div class="col-lg-6">
+            <img src="{% static 'hospital_app/images/hospital-interior.jpg' %}" alt="Hospital Interior & Reception" class="facility-img-card">
+        </div>
+
+        <div class="col-lg-6">
+            <span class="badge-green-pill">State-of-the-Art Infrastructure</span>
+            <h2 class="fw-bold mb-3">Modern Facilities & Clinical Technology</h2>
+            <p class="text-muted mb-4">
+                Our campus is thoughtfully designed to minimize patient stress while maximizing clinical efficiency, safety, and cleanliness.
+            </p>
+            <ul class="list-unstyled d-flex flex-column gap-3 small">
+                <li class="d-flex align-items-center gap-3">
+                    <i class="bi bi-check2-circle text-success fs-5"></i>
+                    <span><strong>18 Modular Operating Theaters</strong> with laminar airflow and robotic surgical assistance.</span>
+                </li>
+                <li class="d-flex align-items-center gap-3">
+                    <i class="bi bi-check2-circle text-success fs-5"></i>
+                    <span><strong>Advanced Diagnostic Imaging</strong> featuring 3T MRI, 128-slice CT scans, and color Doppler.</span>
+                </li>
+                <li class="d-flex align-items-center gap-3">
+                    <i class="bi bi-check2-circle text-success fs-5"></i>
+                    <span><strong>Dedicated Neonatal & Pediatric ICU (NICU/PICU)</strong> with continuous vitals monitoring.</span>
+                </li>
+                <li class="d-flex align-items-center gap-3">
+                    <i class="bi bi-check2-circle text-success fs-5"></i>
+                    <span><strong>24/7 Digital Health Records & Pharmacy</strong> for immediate prescription fulfillment.</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Why Choose Our Hospital -->
+    <div class="p-5 rounded-4 text-center" style="background-color: #FFFFFF; border: 1px solid var(--border-color);">
+        <span class="badge-green-pill">Why Choose CarePulse</span>
+        <h2 class="fw-bold mb-3">Committed to Your Long-Term Wellness</h2>
+        <p class="text-muted mx-auto mb-4" style="max-width: 650px;">
+            Whether you need routine preventative health checkups or complex cardiothoracic surgery, our multidisciplinary team stands beside you every step of the journey.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="{% url 'appointment' %}" class="btn btn-primary-green px-4 py-2">
+                <i class="bi bi-calendar2-plus-fill me-1"></i> Book a Consultation
+            </a>
+            <a href="{% url 'contact' %}" class="btn btn-outline-green px-4 py-2">
+                <i class="bi bi-envelope me-1"></i> Contact Admissions
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

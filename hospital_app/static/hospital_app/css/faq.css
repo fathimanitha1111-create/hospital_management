@@ -1,0 +1,29 @@
+/* faq.css - Styles for FAQ Page */
+.accordion-item {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm) !important;
+  margin-bottom: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(27, 94, 32, 0.04);
+}
+
+.accordion-button {
+  background-color: #FFFFFF;
+  color: var(--dark-green);
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 18px 22px;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #E8F5E9;
+  color: var(--dark-green);
+  box-shadow: none;
+}
+
+.accordion-body {
+  padding: 20px 24px;
+  color: var(--text-dark);
+  line-height: 1.7;
+  background-color: #FAFAFA;
+}

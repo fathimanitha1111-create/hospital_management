@@ -1,0 +1,146 @@
+{% extends 'hospital_app/base.html' %}
+{% load static %}
+
+{% block title %}Medical Services - CarePulse Hospital{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'hospital_app/css/services.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="py-5 bg-white border-bottom">
+    <div class="container text-center">
+        <span class="badge-green-pill">Comprehensive Clinical Care</span>
+        <h1 class="fw-bold mb-2">Our Medical & Healthcare Services</h1>
+        <p class="text-muted mx-auto" style="max-width: 620px;">
+            Explore our specialized clinical departments and healthcare support infrastructure designed for rapid treatment and safe recovery.
+        </p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-4">
+        <!-- 1. Emergency Care -->
+        <div class="col-lg-4 col-md-6">
+            <div class="hospital-card position-relative">
+                <span class="service-badge"><i class="bi bi-clock-fill me-1"></i> 24/7 Available</span>
+                <img src="{% static 'hospital_app/images/emergency-care.jpg' %}" alt="Emergency Care" class="service-card-img">
+                <div class="p-4 d-flex flex-column flex-grow-1">
+                    <h4 class="fw-bold mb-2">Emergency & Trauma Care</h4>
+                    <p class="small text-muted flex-grow-1">
+                        Immediate life-support triage, acute cardiac resuscitation, polytrauma care, and stroke protocol managed 24/7 by board-certified emergency physicians.
+                    </p>
+                    <a href="tel:+1800911785" class="btn btn-sm btn-danger rounded-pill mt-3 fw-bold">
+                        <i class="bi bi-telephone-fill me-1"></i> Call Emergency Desk
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Diagnostic Laboratory -->
+        <div class="col-lg-4 col-md-6">
+            <div class="hospital-card position-relative">
+                <span class="service-badge bg-success">Accredited Lab</span>
+                <img src="{% static 'hospital_app/images/laboratory.jpg' %}" alt="Laboratory" class="service-card-img">
+                <div class="p-4 d-flex flex-column flex-grow-1">
+                    <h4 class="fw-bold mb-2">Diagnostic Laboratory</h4>
+                    <p class="small text-muted flex-grow-1">
+                        High-precision clinical biochemistry, hematology, microbiology, immunology, and histology with automated robotic analyzers delivering fast, accurate reports.
+                    </p>
+                    <a href="{% url 'appointment' %}" class="btn btn-sm btn-outline-green rounded-pill mt-3">
+                        Schedule Lab Tests
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. In-Hospital Pharmacy -->
+        <div class="col-lg-4 col-md-6">
+            <div class="hospital-card position-relative">
+                <span class="service-badge bg-success">24/7 Pharmacy</span>
+                <img src="{% static 'hospital_app/images/pharmacy.jpg' %}" alt="Pharmacy" class="service-card-img">
+                <div class="p-4 d-flex flex-column flex-grow-1">
+                    <h4 class="fw-bold mb-2">In-Hospital Pharmacy</h4>
+                    <p class="small text-muted flex-grow-1">
+                        Complete inventory of genuine prescription pharmaceuticals, specialty oncology medications, surgical consumables, and pharmacist consultation.
+                    </p>
+                    <a href="{% url 'contact' %}" class="btn btn-sm btn-outline-green rounded-pill mt-3">
+                        Pharmacy Inquiries
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Intensive Care Unit (ICU) -->
+        <div class="col-lg-4 col-md-6">
+            <div class="hospital-card position-relative">
+                <span class="service-badge bg-primary">Critical Care</span>
+                <img src="{% static 'hospital_app/images/hospital-interior.jpg' %}" alt="ICU Suites" class="service-card-img">
+                <div class="p-4 d-flex flex-column flex-grow-1">
+                    <h4 class="fw-bold mb-2">Intensive Care Units (ICU)</h4>
+                    <p class="small text-muted flex-grow-1">
+                        Multi-bed medical, surgical, and coronary ICUs equipped with continuous invasive hemodynamic monitoring, mechanical ventilators, and 1:1 nurse ratios.
+                    </p>
+                    <a href="{% url 'about' %}" class="btn btn-sm btn-outline-green rounded-pill mt-3">
+                        View Facilities
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Emergency Ambulance Fleet -->
+        <div class="col-lg-4 col-md-6">
+            <div class="hospital-card position-relative">
+                <span class="service-badge bg-danger">Rapid Dispatch</span>
+                <img src="{% static 'hospital_app/images/ambulance.jpg' %}" alt="Ambulance" class="service-card-img">
+                <div class="p-4 d-flex flex-column flex-grow-1">
+                    <h4 class="fw-bold mb-2">ICU Ambulance Fleet</h4>
+                    <p class="small text-muted flex-grow-1">
+                        GPS-tracked mobile intensive care ambulances staffed with trained paramedics and equipped with oxygen, defibrillators, and vitals telemetry.
+                    </p>
+                    <a href="tel:+1800911785" class="btn btn-sm btn-danger rounded-pill mt-3 fw-bold">
+                        <i class="bi bi-telephone-fill me-1"></i> Request Ambulance
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. General Consultation -->
+        <div class="col-lg-4 col-md-6">
+            <div class="hospital-card position-relative">
+                <span class="service-badge bg-success">Outpatient OPD</span>
+                <img src="{% static 'hospital_app/images/general-medicine.jpg' %}" alt="General Consultation" class="service-card-img">
+                <div class="p-4 d-flex flex-column flex-grow-1">
+                    <h4 class="fw-bold mb-2">General Consultation</h4>
+                    <p class="small text-muted flex-grow-1">
+                        Routine checkups, physical examinations, chronic condition management (hypertension, diabetes), vaccination counseling, and preventative screening.
+                    </p>
+                    <a href="{% url 'appointment' %}" class="btn btn-sm btn-primary-green rounded-pill mt-3 justify-content-center">
+                        Book Doctor Visit
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Diagnostic Imaging & Cardiology Services -->
+        <div class="col-lg-12">
+            <div class="service-highlight-box mt-3">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-8">
+                        <h3 class="text-white fw-bold mb-2">Advanced Diagnostic & Radiology Suite</h3>
+                        <p class="text-light mb-4" style="color: #E8F5E9;">
+                            Our diagnostic imaging center features 3 Tesla MRI, high-speed 128-Slice Spiral CT, 4D Color Echocardiography, Digital Mammography, and Dexa bone densitometry for rapid clinical precision.
+                        </p>
+                        <a href="{% url 'appointment' %}" class="btn btn-light rounded-pill px-4 py-2 fw-bold text-success">
+                            <i class="bi bi-calendar-check-fill me-1"></i> Book Diagnostic Consultation
+                        </a>
+                    </div>
+                    <div class="col-lg-4 text-center">
+                        <i class="bi bi-heart-pulse-fill text-white opacity-50" style="font-size: 7rem;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

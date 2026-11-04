@@ -1,0 +1,87 @@
+{% extends 'hospital_app/base.html' %}
+{% load static %}
+
+{% block title %}Patient Sign In - CarePulse Hospital{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'hospital_app/css/patient_login.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-5">
+            <div class="login-card">
+                <div class="login-header-banner">
+                    <img src="{% static 'hospital_app/images/hospital-logo.png' %}" alt="CarePulse Logo" height="48" class="mb-2">
+                    <h3 class="fw-bold mb-1 text-white">Patient Sign In</h3>
+                    <p class="small mb-0" style="color: #E8F5E9;">Access appointments, history, and medical profile</p>
+                </div>
+
+                <div class="p-4 p-md-5">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Username</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-person text-success"></i></span>
+                                <input type="text" name="username" id="id_username" class="form-control" placeholder="Enter your username" required autofocus>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <label class="form-label small fw-bold">Password</label>
+                                <span class="small text-muted" data-bs-toggle="tooltip" title="Contact the admissions desk or administrator if you require account recovery.">
+                                    <i class="bi bi-question-circle"></i> Forgot password?
+                                </span>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-key text-success"></i></span>
+                                <input type="password" name="password" id="id_password" class="form-control" placeholder="Enter password" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary-green w-100 justify-content-center py-2 fs-6">
+                            <i class="bi bi-box-arrow-in-right me-1"></i> Sign In
+                        </button>
+                    </form>
+
+                    <!-- Quick Demo Credentials Fill -->
+                    <div class="quick-demo-pill mt-4">
+                        <span class="fw-bold small text-dark d-block mb-2">
+                            <i class="bi bi-lightning-charge-fill text-warning me-1"></i> Quick Demo Accounts:
+                        </span>
+                        <div class="d-flex flex-column gap-2 small">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span><strong>Demo Patient:</strong> patient / patient123</span>
+                                <button type="button" class="btn btn-xs btn-outline-success py-0 px-2 rounded-pill btn-auto-fill" data-u="patient" data-p="patient123">Fill</button>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span><strong>Admin User:</strong> admin / admin123</span>
+                                <button type="button" class="btn btn-xs btn-outline-success py-0 px-2 rounded-pill btn-auto-fill" data-u="admin" data-p="admin123">Fill</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4 text-muted small">
+                        Don't have an account yet? <a href="{% url 'patient_register' %}" class="fw-bold text-success">Create Patient Account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block page_js %}
+<script>
+document.querySelectorAll('.btn-auto-fill').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.getElementById('id_username').value = this.getAttribute('data-u');
+        document.getElementById('id_password').value = this.getAttribute('data-p');
+    });
+});
+</script>
+{% endblock %}

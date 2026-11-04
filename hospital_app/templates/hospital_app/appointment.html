@@ -1,0 +1,151 @@
+{% extends 'hospital_app/base.html' %}
+{% load static %}
+
+{% block title %}Book an Appointment - CarePulse Hospital{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'hospital_app/css/appointment.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="py-5 bg-white border-bottom">
+    <div class="container text-center">
+        <span class="badge-green-pill">Easy & Rapid Scheduling</span>
+        <h1 class="fw-bold mb-2">Book Your Doctor Consultation</h1>
+        <p class="text-muted mx-auto" style="max-width: 620px;">
+            Schedule an appointment with our senior specialists. Select your department, preferred doctor, and convenient time slot.
+        </p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-5">
+        <!-- Main Form Column -->
+        <div class="col-lg-8">
+            <div class="appointment-form-card">
+                <div class="d-flex align-items-center gap-3 pb-3 mb-4 border-bottom">
+                    <div class="appointment-header-icon">
+                        <i class="bi bi-calendar2-heart-fill"></i>
+                    </div>
+                    <div>
+                        <h4 class="fw-bold mb-0">Consultation Form</h4>
+                        <p class="text-muted small mb-0">Logged in as: <strong>{{ user.get_full_name|default:user.username }}</strong> ({{ user.email }})</p>
+                    </div>
+                </div>
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {% for error in form.non_field_errors %}
+                                <div><i class="bi bi-exclamation-triangle-fill me-1"></i> {{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <!-- Patient Identification Fields (Pre-filled and displayed) -->
+                    <h6 class="fw-bold text-success text-uppercase mb-3" style="font-size: 0.8rem; letter-spacing: 0.05em;">
+                        1. Patient Information
+                    </h6>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold">Patient Name</label>
+                            <input type="text" class="form-control" value="{{ user.get_full_name|default:user.username }}" readonly style="background-color: #F8F9FA;">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold">Email Address</label>
+                            <input type="email" class="form-control" value="{{ user.email }}" readonly style="background-color: #F8F9FA;">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold">Contact Phone</label>
+                            <input type="text" class="form-control" value="{{ profile.phone|default:'Not provided' }}" readonly style="background-color: #F8F9FA;">
+                        </div>
+                    </div>
+
+                    <!-- Consultation Details -->
+                    <h6 class="fw-bold text-success text-uppercase mb-3 pt-3 border-top" style="font-size: 0.8rem; letter-spacing: 0.05em;">
+                        2. Specialty, Doctor & Time Slot
+                    </h6>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label for="id_department" class="form-label small fw-bold">Select Department <span class="text-danger">*</span></label>
+                            {{ form.department }}
+                            {% if form.department.errors %}<div class="text-danger small mt-1">{{ form.department.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="id_doctor" class="form-label small fw-bold">Select Doctor <span class="text-danger">*</span></label>
+                            {{ form.doctor }}
+                            {% if form.doctor.errors %}<div class="text-danger small mt-1">{{ form.doctor.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="id_appointment_date" class="form-label small fw-bold">Appointment Date <span class="text-danger">*</span></label>
+                            {{ form.appointment_date }}
+                            <div class="form-text small">Past dates are automatically blocked.</div>
+                            {% if form.appointment_date.errors %}<div class="text-danger small mt-1">{{ form.appointment_date.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="id_appointment_time" class="form-label small fw-bold">Appointment Time <span class="text-danger">*</span></label>
+                            {{ form.appointment_time }}
+                            {% if form.appointment_time.errors %}<div class="text-danger small mt-1">{{ form.appointment_time.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-12">
+                            <label for="id_reason" class="form-label small fw-bold">Reason for Visit / Symptoms <span class="text-danger">*</span></label>
+                            {{ form.reason }}
+                            <div class="form-text small">Please detail duration of symptoms, prior tests, or current medications.</div>
+                            {% if form.reason.errors %}<div class="text-danger small mt-1">{{ form.reason.errors.0 }}</div>{% endif %}
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3 pt-3 border-top">
+                        <span class="small text-muted">
+                            <i class="bi bi-shield-lock-fill text-success me-1"></i> Data protected by hospital security standards.
+                        </span>
+                        <button type="submit" class="btn btn-primary-green px-5 py-3 w-100 w-sm-auto justify-content-center">
+                            <i class="bi bi-check-circle-fill me-1"></i> Submit Appointment
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Helpful Right Column -->
+        <div class="col-lg-4">
+            <div class="hospital-card p-4 mb-4">
+                <h5 class="fw-bold mb-3"><i class="bi bi-info-circle-fill text-success me-2"></i> Patient Guidelines</h5>
+                <ul class="list-unstyled d-flex flex-column gap-3 small text-muted mb-0">
+                    <li class="d-flex gap-2">
+                        <i class="bi bi-check-circle-fill text-success mt-1"></i>
+                        <span>Please arrive <strong>15 minutes early</strong> for vitals screening.</span>
+                    </li>
+                    <li class="d-flex gap-2">
+                        <i class="bi bi-check-circle-fill text-success mt-1"></i>
+                        <span>Bring any previous prescription records, MRI/X-ray films, or blood test reports.</span>
+                    </li>
+                    <li class="d-flex gap-2">
+                        <i class="bi bi-check-circle-fill text-success mt-1"></i>
+                        <span>You can cancel or reschedule appointments directly from your <strong>Patient Dashboard</strong>.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Emergency Card -->
+            <div class="p-4 rounded-4 text-white" style="background: linear-gradient(135deg, var(--dark-green) 0%, var(--btn-green) 100%);">
+                <h5 class="fw-bold mb-2"><i class="bi bi-telephone-plus-fill me-1"></i> Need Immediate Care?</h5>
+                <p class="small text-light mb-3">
+                    If this is a life-threatening medical emergency, call our emergency department directly.
+                </p>
+                <a href="tel:+1800911785" class="btn btn-light rounded-pill w-100 fw-bold text-success">
+                    Call ER: +1 (800) 911-PULSE
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
