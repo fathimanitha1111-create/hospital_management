@@ -2,15 +2,20 @@
 .auth-form-card {
   background-color: #FFFFFF;
   border-radius: var(--radius-lg);
-  padding: 40px;
   border: 1px solid var(--border-color);
   box-shadow: var(--card-shadow);
+  overflow: hidden;
 }
 
 .auth-header-strip {
   background: linear-gradient(135deg, var(--dark-green) 0%, var(--btn-green) 100%);
   color: #FFFFFF;
-  padding: 30px;
-  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  padding: 30px 20px;
   text-align: center;
+}
+
+@media (max-width: 575.98px) {
+  .auth-form-card .p-4 {
+    padding: 24px 18px !important;
+  }
 }

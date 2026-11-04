@@ -3,9 +3,10 @@
   width: 100%;
   height: 380px;
   object-fit: cover;
+  object-position: center;
   border-radius: var(--radius-md);
   box-shadow: var(--card-shadow);
-  border: 3px solid #FFFFFF;
+  border: 4px solid #FFFFFF;
 }
 
 .mission-vision-box {
@@ -18,15 +19,18 @@
 }
 
 .facility-img-card {
-  height: 250px;
   width: 100%;
+  height: 340px;
   object-fit: cover;
+  object-position: center;
   border-radius: var(--radius-md);
+  box-shadow: var(--card-shadow);
+  border: 4px solid #FFFFFF;
 }
 
 .feature-check-icon {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background-color: var(--primary-color);
   color: var(--dark-green);
@@ -34,4 +38,14 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 575.98px) {
+  .about-hero-img, .facility-img-card {
+    height: 240px;
+  }
+  .mission-vision-box {
+    padding: 24px 18px;
+  }
 }

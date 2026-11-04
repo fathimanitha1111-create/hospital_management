@@ -2,7 +2,7 @@
 .contact-info-card {
   background-color: #FFFFFF;
   border-radius: var(--radius-md);
-  padding: 30px;
+  padding: 30px 24px;
   border: 1px solid var(--border-color);
   box-shadow: var(--card-shadow);
   height: 100%;
@@ -24,7 +24,13 @@
 .map-placeholder-box {
   background-color: #E8F5E9;
   border-radius: var(--radius-md);
-  padding: 40px;
+  padding: 35px 20px;
   text-align: center;
   border: 2px dashed var(--primary-color);
+}
+
+@media (max-width: 575.98px) {
+  .contact-info-card {
+    padding: 24px 18px;
+  }
 }

@@ -3,6 +3,8 @@
   height: 220px;
   width: 100%;
   object-fit: cover;
+  object-position: center;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .service-badge {
@@ -15,6 +17,7 @@
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .service-highlight-box {
@@ -22,4 +25,11 @@
   color: #FFFFFF;
   border-radius: var(--radius-lg);
   padding: 40px;
+  box-shadow: var(--card-shadow);
+}
+
+@media (max-width: 575.98px) {
+  .service-highlight-box {
+    padding: 24px 20px;
+  }
 }

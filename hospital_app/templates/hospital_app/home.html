@@ -13,32 +13,32 @@
      ========================================== -->
 <section class="hero-banner-section">
     <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6">
+        <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-lg-6 hero-content-col">
                 <span class="intro-badge mb-3 d-inline-block">
                     <i class="bi bi-patch-check-fill text-success me-1"></i> JCI Certified Multi-Specialty Hospital
                 </span>
-                <h1 class="display-4 fw-bold mb-3" style="color: var(--dark-green); line-height: 1.15;">
+                <h1 class="hero-title">
                     Advanced Healthcare, <br>
-                    <span style="color: var(--btn-green);">Compassionate Healing.</span>
+                    <span class="text-highlight">Compassionate Healing.</span>
                 </h1>
-                <p class="fs-6 text-muted mb-4">
+                <p class="hero-desc">
                     Welcome to CarePulse Hospital. We provide round-the-clock emergency assistance, distinguished specialist consultations, and cutting-edge medical technologies designed to restore your vitality.
                 </p>
 
-                <div class="d-flex flex-wrap gap-3 mb-4">
-                    <a href="{% url 'appointment' %}" class="btn btn-primary-green px-4 py-3 fs-6">
+                <div class="hero-btn-group d-flex flex-wrap gap-3 mb-4">
+                    <a href="{% url 'appointment' %}" class="btn btn-primary-green px-4 py-3">
                         <i class="bi bi-calendar2-check-fill"></i> Book Appointment
                     </a>
-                    <a href="{% url 'doctors' %}" class="btn btn-outline-green px-4 py-3 fs-6">
+                    <a href="{% url 'doctors' %}" class="btn btn-outline-green px-4 py-3">
                         <i class="bi bi-search"></i> Find a Specialist
                     </a>
-                    <a href="tel:+1800911785" class="btn btn-danger px-3 py-3 fs-6 rounded-pill fw-bold">
+                    <a href="tel:+1800911785" class="btn btn-danger px-3 py-3 rounded-pill fw-bold">
                         <i class="bi bi-telephone-plus-fill me-1"></i> Emergency ER
                     </a>
                 </div>
 
-                <div class="d-flex align-items-center gap-3 pt-2">
+                <div class="d-flex flex-wrap align-items-center gap-2 pt-2">
                     <span class="badge bg-white text-dark border px-3 py-2 rounded-pill shadow-sm">
                         <i class="bi bi-shield-fill-check text-success me-1"></i> 100% HIPAA Compliant
                     </span>
@@ -48,8 +48,10 @@
                 </div>
             </div>
 
-            <div class="col-lg-6">
-                <img src="{% static 'hospital_app/images/hospital-banner.jpg' %}" alt="CarePulse Banner" class="hero-banner-img">
+            <div class="col-lg-6 hero-image-col">
+                <div class="hero-image-wrapper">
+                    <img src="{% static 'hospital_app/images/hospital-banner.jpg' %}" alt="CarePulse Hospital Healthcare Banner" class="hero-banner-img">
+                </div>
             </div>
         </div>
     </div>
@@ -354,3 +356,4 @@
     </div>
 </section>
 {% endblock %}
+

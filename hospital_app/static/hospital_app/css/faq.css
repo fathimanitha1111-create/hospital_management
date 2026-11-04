@@ -27,3 +27,14 @@
   line-height: 1.7;
   background-color: #FAFAFA;
 }
+
+@media (max-width: 575.98px) {
+  .accordion-button {
+    font-size: 0.95rem;
+    padding: 14px 16px;
+  }
+  .accordion-body {
+    padding: 16px;
+    font-size: 0.9rem;
+  }
+}

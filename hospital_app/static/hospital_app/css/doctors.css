@@ -1,13 +1,15 @@
 /* doctors.css - Styles for Doctors Directory */
 .doctor-profile-img {
-  height: 280px;
+  height: 270px;
   width: 100%;
   object-fit: cover;
+  object-position: center top;
+  border-bottom: 1px solid var(--border-color);
   transition: transform 0.4s ease;
 }
 
 .hospital-card:hover .doctor-profile-img {
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
 .doctor-filter-bar {
@@ -28,10 +30,19 @@
   background-color: #FFFFFF;
   color: var(--dark-green);
   transition: all 0.2s ease;
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .dept-pill-btn:hover, .dept-pill-btn.active {
   background-color: var(--btn-green);
   color: #FFFFFF;
   border-color: var(--btn-green);
+}
+
+@media (max-width: 575.98px) {
+  .dept-pill-btn {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+  }
 }

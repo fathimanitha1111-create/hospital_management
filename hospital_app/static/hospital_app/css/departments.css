@@ -1,13 +1,15 @@
 /* departments.css - Styles for Departments Directory */
 .dept-card-img {
-  height: 240px;
+  height: 220px;
   width: 100%;
   object-fit: cover;
+  object-position: center;
+  border-bottom: 1px solid var(--border-color);
   transition: transform 0.4s ease;
 }
 
 .hospital-card:hover .dept-card-img {
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
 .dept-header-strip {

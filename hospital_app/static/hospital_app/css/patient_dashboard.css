@@ -2,7 +2,7 @@
 .patient-kpi-card {
   background-color: #FFFFFF;
   border-radius: var(--radius-md);
-  padding: 24px;
+  padding: 22px 20px;
   border: 1px solid var(--border-color);
   box-shadow: var(--card-shadow);
   display: flex;
@@ -25,6 +25,7 @@
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
+  flex-shrink: 0;
 }
 
 .dashboard-table-card {
@@ -33,6 +34,10 @@
   border: 1px solid var(--border-color);
   box-shadow: var(--card-shadow);
   overflow: hidden;
+}
+
+.table-custom {
+  margin-bottom: 0;
 }
 
 .table-custom th {
@@ -44,10 +49,12 @@
   letter-spacing: 0.05em;
   padding: 14px 18px;
   border-bottom: 2px solid var(--primary-color);
+  white-space: nowrap;
 }
 
 .table-custom td {
   padding: 14px 18px;
   vertical-align: middle;
   border-bottom: 1px solid #ECEFF1;
+  font-size: 0.92rem;
 }
